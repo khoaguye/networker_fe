@@ -42,5 +42,5 @@
   "devDependencies": {
     "tailwindcss": "^3.3.3"
   },
-  "proxy": "http://localhost:8000/"
+  "proxy": "https://networker-be.onrender.com/"
 }
