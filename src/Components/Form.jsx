@@ -1,10 +1,10 @@
 import React from 'react'
-import { useState, useEffect, useRef } from 'react'
+import { useState } from 'react'
 import {BsQrCode} from "react-icons/bs"
 import axios from 'axios';
-import { Html5QrcodeScanner } from 'html5-qrcode';
 import QrReader from 'react-qr-reader-es6'
 function Form() {
+    // http://localhost:8000/
     const companies = ["Companies","BNY MELLON", "Capital One", "Citizens", "Flatiron", "Google", "HubSpot", "Hubdl", "IBM",
     "Jane Street", "JPMorgan Chase&Co", "Mastercard", "Meta", "Mircosoft", "Palantir", "DEShaw&Co", "Two Sigma"];
     const [company, setCompany] = useState([companies[0]])
@@ -14,44 +14,8 @@ function Form() {
     const [linkedin, setLinkedin] = useState("")
     const [note, setNote] = useState("")
     const [showScanner, setShowScanner] = useState(false)
+    const [notification, setNotification] = useState("")
 
-    //const [showScanner, setShowScanner] = useState(false);
-    // const linkedinRef = useRef();
-
-    // const handleScanSuccess = (decodedText) => {
-    //     setLinkedin(decodedText);
-    //     setShowScanner(false);
-    // };
-
-    // const handleScanFailure = (errorMessage) => {
-    //     console.log('showScanner before:', showScanner);
-    //     setShowScanner(false);
-    //     console.log('showScanner after:', showScanner);
-    // };
-
-    // const handleScanError = (error) => {
-    //     console.log(error);
-    //     setShowScanner(false);
-    // };
-
-    // const handleScanComplete = () => {
-    //     setShowScanner(false);
-    // };
-
-    // const handleQrClick = () => {
-    //     setShowScanner(true);
-    // };
-
-    // useEffect(() => {
-    //     if (showScanner) {
-    //         console.log('Rendering scanner');
-    //         let scanner = new Html5QrcodeScanner(
-    //             "qr-reader",
-    //             { fps: 10, qrbox: 250 }
-    //         );
-    //         scanner.render(handleScanSuccess, handleScanFailure, handleScanError, handleScanComplete);
-    //     }
-    // }, [showScanner]);
     const handleScan = data => {
         if (data) {
           setLinkedin(data)
@@ -74,9 +38,11 @@ function Form() {
         axios.post(url, peopleInfor)
             .then(response =>{
                 console.log(response.data)
+                setNotification(response.data)
             })
             .catch (error => {
                 console.error(error);
+                setNotification(error.response.data)
             })
     }
   return (
@@ -86,6 +52,7 @@ function Form() {
             <h2 className='font-playball font-light text-blue_text'> I am happy to connect with you !!!</h2>
        </div>
        <div className="w-[90%] mt-4 mx-auto p-[1.25em] ">
+        {notification && <p className='text-red-600'> {notification}</p>}
         <form className="mx-auto flex flex-col gap-4">
             <div className='flex flex-row justify-between border-b-2 border-tapia_blue pb-2'>
             <label className='font-bold'>Company: </label>
@@ -111,7 +78,7 @@ function Form() {
                     }}
                     
                     className= "border rounded -mt-1 px-1 py-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    >
+                    >                       
                 </input>
             </div>
             <div className='flex flex-row gap-1 justify-between border-b-2 border-tapia_blue pb-2'>
