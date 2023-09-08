@@ -34,16 +34,29 @@ function Form() {
         "note": note
     }
     const url = "/people/infor"
-    function handleSubmit(){
-        axios.post(url, peopleInfor)
-            .then(response =>{
-                console.log(response.data)
-                setNotification(response.data)
-            })
-            .catch (error => {
-                console.error(error);
-                setNotification(error.response.data)
-            })
+    // function handleSubmit(){
+    //     axios.post(url, peopleInfor)
+    //         .then(response =>{
+    //             console.log(response.data)
+    //             console.log(response)
+    //             setNotification(response.data)
+    //         })
+    //         .catch (error => {
+    //             console.error(error);
+    //             setNotification(error.response.data)
+    //         })
+    // }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+          const response = await axios.post(url, peopleInfor);
+          console.log(response.data)
+          console.log(response)
+          setNotification(response.data)
+        } catch (error) {
+          console.error(error);
+        }
     }
   return (
     <div className='mt-[2em] w-full items-center justify-center'>
