@@ -56,6 +56,7 @@ function Form() {
           setNotification(response.data)
         } catch (error) {
           console.error(error);
+          setNotification(error.response.data)
         }
     }
   return (
