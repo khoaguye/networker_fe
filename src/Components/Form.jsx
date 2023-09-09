@@ -59,6 +59,15 @@ function Form() {
           setNotification(error.response.data)
         }
     }
+    function resetVal(){
+        setCompany(companies[0])
+        setFname("")
+        setLname("")
+        setEmail("")
+        setLinkedin("")
+        setNote("")
+        setNotification("")
+    }
   return (
     <div className='mt-[2em] w-full items-center justify-center'>
         <div className='flex flex-col justify-center items-center '>
@@ -66,7 +75,10 @@ function Form() {
             <h2 className='font-playball font-light text-blue_text'> I am happy to connect with you !!!</h2>
        </div>
        <div className="w-[90%] mt-4 mx-auto p-[1.25em] ">
+        <div className='flex justify-between'>
         {notification && <p className='text-red-600'> {notification}</p>}
+        {notification&& <button onClick ={resetVal}>Reset</button>}
+        </div>
         <form className="mx-auto flex flex-col gap-4">
             <div className='flex flex-row justify-between border-b-2 border-tapia_blue pb-2'>
             <label className='font-bold'>Company: </label>
@@ -86,6 +98,7 @@ function Form() {
                 <label className='font-bold'>First Name: </label>
                 <input
                     type = "firstname"
+                    value = {fname}
                     onChange={(e) => {
                         setFname(e.target.value);
                         //console.log(fname);
@@ -99,6 +112,7 @@ function Form() {
                 <label className='font-bold'>Last Name: </label>
                 <input
                     type = "Lastname"
+                    value = {lname}
                     onChange = {(e) => setLname(e.target.value)}
                     className= "border rounded -mt-1 px-1 py-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     >
@@ -108,6 +122,7 @@ function Form() {
                 <label className='font-bold'>Email: </label>
                 <input
                     type = "email"
+                    value = {email}
                     onChange = {(e) => setEmail(e.target.value)}
                     className= "border rounded -mt-1 px-1 py-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     >
@@ -140,6 +155,7 @@ function Form() {
                 <label className='font-bold'>Note: </label>
                 <textarea id="notes" name="notes"
                     onChange = {(e) => setNote(e.target.value)}
+                    values = {note}
                     className= "border rounded -mt-1 py-2 px-2 w-full text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     >
                 </textarea>
