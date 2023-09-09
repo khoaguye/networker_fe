@@ -33,7 +33,7 @@ function Form() {
         "linkedin": linkedin, 
         "note": note
     }
-    const url = "/people/infor"
+    //const url = "https://networker-be.onrender.com/people/infor"
     // function handleSubmit(){
     //     axios.post(url, peopleInfor)
     //         .then(response =>{
@@ -50,7 +50,7 @@ function Form() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-          const response = await axios.post(url, peopleInfor);
+          const response = await axios.post('https://networker-be.onrender.com/people/infor', peopleInfor);
           console.log(response.data)
           console.log(response)
           setNotification(response.data)
