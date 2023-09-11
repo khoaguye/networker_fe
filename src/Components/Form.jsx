@@ -22,9 +22,6 @@ function Form() {
           setShowScanner(false)
         }
       }
-    const handleError = err => {
-        console.error(err)
-      }
     const peopleInfor ={
         "company": company,
         "firstname": fname,
@@ -33,24 +30,11 @@ function Form() {
         "linkedin": linkedin, 
         "note": note
     }
-    //const url = "https://networker-be.onrender.com/people/infor"
-    // function handleSubmit(){
-    //     axios.post(url, peopleInfor)
-    //         .then(response =>{
-    //             console.log(response.data)
-    //             console.log(response)
-    //             setNotification(response.data)
-    //         })
-    //         .catch (error => {
-    //             console.error(error);
-    //             setNotification(error.response.data)
-    //         })
-    // }
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e) => {  
         e.preventDefault();
         try {
-          const response = await axios.post('https://networker-be.onrender.com/people/infor', peopleInfor);
+          const response = await axios.post('https://networkerbe-production.up.railway.app//people/infor', peopleInfor);
           console.log(response.data)
           console.log(response)
           setNotification(response.data)
