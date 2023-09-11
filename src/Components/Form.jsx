@@ -34,7 +34,7 @@ function Form() {
     const handleSubmit = async (e) => {  
         e.preventDefault();
         try {
-          const response = await axios.post('https://networkerbe-production.up.railway.app//people/infor', peopleInfor);
+          const response = await axios.post('https://networkerbe-production.up.railway.app/people/infor', peopleInfor);
           console.log(response.data)
           console.log(response)
           setNotification(response.data)
